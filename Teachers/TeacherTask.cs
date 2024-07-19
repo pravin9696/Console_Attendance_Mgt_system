@@ -1,6 +1,7 @@
 ﻿using Console_Attendance_Mgt_system.login_signup;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,7 @@ namespace Console_Attendance_Mgt_system.Teachers
 {
     internal class TeacherTask
     {
+        public int? Tid = null;//Tid==>Teacher Id
         public void TeacherDashboard()
         {
             
@@ -40,7 +42,46 @@ namespace Console_Attendance_Mgt_system.Teachers
         }
         public void showTeacherProfile()
         {
-            Console.WriteLine("Teacher Profile Show Successfully...");
+        
+            if (Global.userid != null)
+            {
+                SqlConnection con = new SqlConnection();
+                try
+                {
+                    
+                    con.ConnectionString = Properties.Settings.Default.MyConString;
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand();
+                    cmd.Connection = con;
+                    cmd.CommandText = $"select * from tblTeachers where userid={Global.userid}";
+                    cmd.CommandType = CommandType.Text;
+                    SqlDataReader rdr = cmd.ExecuteReader();
+                    if (rdr.Read())
+                    {
+                        
+                        Console.WriteLine("First Name :" + rdr["Fname"]);
+                        Console.WriteLine($"Last Name : {rdr["Lname"].ToString()}");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Profile of {Global.userid} is not available.....");
+                    }                   
+
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                finally
+                {
+                    con.Close();
+                }
+            }
+            else
+            {
+                Console.WriteLine("Please login...");
+                new Login_signup().login();
+            }
         }
 
         public bool checkUserIDinTeacherTable(int? uid)

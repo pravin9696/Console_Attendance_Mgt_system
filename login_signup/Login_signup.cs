@@ -74,6 +74,7 @@ namespace Console_Attendance_Mgt_system.login_signup
             cmd.CommandType = CommandType.Text;
              SqlDataReader rdr= cmd.ExecuteReader();
             if (rdr.Read()) {
+
                 Global.userid = int.Parse(rdr[0].ToString());
                 Global.userRole = rdr["role"].ToString();
                 Console.WriteLine("Login Successful...");

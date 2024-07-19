@@ -1,0 +1,40 @@
+
+Role
+
+USers
+- Signup (Done)
+-login(Done)
+
+
+Student
+-updateProfile
+
+-Show Profile
+
+-Show Attendance
+     -Overall attendance
+	 -Subject Wise Attendance
+	 
+
+
+Teacher
+-Update Profile(done)
+-insert profile(done)
+-show Profile (done)
+-Take Attendance
+-Show Attendance
+     -Class wise attendance
+	 
+
+
+Admin
+-allow student(feature enhancement)
+-debar student(feature enhancement)
+-allow student(feature enhancement)
+-remove Teacher(feature enhancement)
+-Reports
+	-Class wise student list
+	-Teacher list
+	-Attendance
+		-class wise attendance (all subject combine attendance)
+		-Teacher wise and class wise attendance
